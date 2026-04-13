@@ -7,6 +7,7 @@ import { validateSchema, calculateResponseTime } from '../API/apiUtils';
 let api;
 
 test.beforeAll(async () => {
+    const baseURL = 'https://api.restful-api.dev';
     api = new BaseAPI(); // pass token if needed
     await api.init();
 });
@@ -21,7 +22,6 @@ test('GET single object', async () => {
     expect(response.status()).toBe(200);
 
     const body = await response.json();
-
     expect(body.id).toBe('2');
     expect(body.name).toBe('Apple iPhone 12 Mini, 256GB, Blue');
 
@@ -29,7 +29,7 @@ test('GET single object', async () => {
 });
 
 test('GET all objects', async () => {
-    const response = await api.get(ENDPOINTS.GET_ALL);
+    const response = await api.get(ENDPOINTS.GET_ALLOBJECTS);
 
     expect(response.status()).toBe(200);
 
@@ -51,7 +51,7 @@ test('POST object', async () => {
         }
     };
 
-    const response = await api.post(ENDPOINTS.CREATE, payload);
+    const response = await api.post(ENDPOINTS.CREATE_OBJECT, payload);
 
     expect(response.status()).toBe(200);
 
@@ -70,7 +70,7 @@ test('PUT object', async () => {
         }
     };
 
-    const response = await api.put(ENDPOINTS.UPDATE(id), payload);
+    const response = await api.put(ENDPOINTS.UPDATE_OBJECT(id), payload);
 
     expect(response.status()).toBe(200);
 });
@@ -78,7 +78,7 @@ test('PUT object', async () => {
 test('DELETE object', async () => {
     const id = 'ff8081819d62221a019d7827f1541f29';
 
-    const response = await api.delete(ENDPOINTS.DELETE(id));
+    const response = await api.delete(ENDPOINTS.DELETE_OBJECT(id));
 
     expect(response.status()).toBe(200);
 });

@@ -6,9 +6,9 @@ export default class BaseAPI {
         this.context = null;
     }
 
-    async init() {
+    async init(url) {
         this.context = await request.newContext({
-            baseURL: 'https://api.restful-api.dev',
+            baseURL: url,
             extraHTTPHeaders: {
                 'Content-Type': 'application/json',
                 //  ...(this.token && { Authorization: `Bearer ${this.token}` })

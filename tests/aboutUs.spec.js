@@ -19,6 +19,7 @@ test('VE-2323 Verify About Us Page Content Title  ', async ({ page }) => {
     expect(title).toBe('VivTechGuru Vision');
 
 
+
 });
 
 test('VE-2323 Verify About Us Page text Content  ', async ({ page }) => {
